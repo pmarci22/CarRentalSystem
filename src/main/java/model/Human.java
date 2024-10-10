@@ -7,7 +7,7 @@ public class Human {
     private String address;
     private String phoneNumber;
 
-    Human(String name, int age, int idnumber, String address, String phoneNumber) {
+    public Human(String name, int age, int idnumber, String address, String phoneNumber) {
         this.name = name;
         this.age = age;
         this.idnumber = idnumber;

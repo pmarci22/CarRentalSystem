@@ -4,11 +4,13 @@ public class Rental {
     private Human human;
     private Car car;
     private int days;
+    private int price;
 
-    Rental(Human human, Car car, int days) {
+    public Rental(Human human, Car car, int days, int price) {
         this.human = human;
         this.car = car;
         this.days = days;
+        this.price = price;
     }
 
     // Getters
@@ -25,6 +27,10 @@ public class Rental {
         return days;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     // Setters
 
     public void setHuman(Human human) {
@@ -37,5 +43,9 @@ public class Rental {
 
     public void setDays(int days) {
         this.days = days;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
