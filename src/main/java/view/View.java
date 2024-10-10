@@ -39,16 +39,18 @@ public class View extends JFrame {
         mainMenuPanel = new JPanel();
         mainMenuPanel.setLayout(new BoxLayout(mainMenuPanel, BoxLayout.Y_AXIS));
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int fontSize = (int) (screenSize.height * 0.03);
         JLabel titleLabel = new JLabel("Main Menu");
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, fontSize));
         mainMenuPanel.add(titleLabel);
         mainMenuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         String[] buttonLabels = {"View Cars", "View Clients", "View Rentals", "Add Cars", "Add Clients", "Add Rentals"};
         String[] panelNames = {"ViewCars", "ViewHumans", "ViewRentals", "AddCars", "AddHumans", "AddRentals"};
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
         int buttonWidth = (int) (screenSize.width * 0.2);
         int buttonHeight = (int) (screenSize.height * 0.05);
         Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
