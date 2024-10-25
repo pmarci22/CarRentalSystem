@@ -1,9 +1,13 @@
 package presenter;
 
+import model.Car;
 import model.Model;
 import view.View;
 
-public class Presenter {
+import java.io.Serializable;
+import java.util.List;
+
+public class Presenter implements Serializable {
     private Model model;
     private View view;
 
@@ -15,5 +19,13 @@ public class Presenter {
 
     public void mainMenu() {
         view.showMainMenu();
+    }
+
+    public List<Car> getCarList() {
+        return model.getCars();
+    }
+
+    public void addCar(Car car) {
+        model.addCar(car);
     }
 }

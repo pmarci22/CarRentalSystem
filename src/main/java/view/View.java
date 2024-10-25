@@ -1,20 +1,22 @@
 package view;
 
+import model.Car;
 import presenter.Presenter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class View extends JFrame {
     private Presenter presenter;
 
-    private JPanel titlePanel;
     private JPanel mainPanel;
     private CardLayout cardLayout;
-    private JPanel viewCars, viewHumans, viewRentals;
-    private JPanel addCars, addHumans, addRentals;
+
+    private ViewCars viewCars;
+    private AddCars addCars;
+
+    private JPanel viewHumans, viewRentals;
+    private JPanel addHumans, addRentals;
     private JPanel mainMenuPanel;
 
     public View() {
@@ -22,10 +24,10 @@ public class View extends JFrame {
         cardLayout = new CardLayout();
         mainPanel.setLayout(cardLayout);
 
-        viewCars = new JPanel();
+        viewCars = new ViewCars(e -> showMainMenu());
+        addCars = new AddCars(e -> showMainMenu(), e -> saveCar());
         viewHumans = new JPanel();
         viewRentals = new JPanel();
-        addCars = new JPanel();
         addHumans = new JPanel();
         addRentals = new JPanel();
 
@@ -60,12 +62,14 @@ public class View extends JFrame {
             String panelName = panelNames[i];
             button.setPreferredSize(buttonSize);
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+            if (panelName.equals("ViewCars")) {
+                button.addActionListener(e -> {
+                    refreshViewCars();
                     cardLayout.show(mainPanel, panelName);
-                }
-            });
+                });
+            } else {
+                button.addActionListener(e -> cardLayout.show(mainPanel, panelName));
+            }
             mainMenuPanel.add(button);
             mainMenuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
@@ -86,5 +90,19 @@ public class View extends JFrame {
 
     public void showMainMenu() {
         cardLayout.show(mainPanel, "MainMenu");
+    }
+
+    public void refreshViewCars() {
+        viewCars.updatePanel(presenter.getCarList());
+    }
+
+    public void saveCar() {
+        Car c = addCars.getCar();
+
+        if (c != null){
+            presenter.addCar(c);
+        }
+
+        showMainMenu();
     }
 }

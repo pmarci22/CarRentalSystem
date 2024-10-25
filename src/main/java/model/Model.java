@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model {
+public class Model implements Serializable {
     private ArrayList<Human> humans;
     private ArrayList<Car> cars;
     private ArrayList<Rental> rentals;
