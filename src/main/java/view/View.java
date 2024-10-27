@@ -1,6 +1,7 @@
 package view;
 
 import model.Car;
+import model.Human;
 import presenter.Presenter;
 
 import javax.swing.*;
@@ -15,8 +16,11 @@ public class View extends JFrame {
     private ViewCars viewCars;
     private AddCars addCars;
 
-    private JPanel viewHumans, viewRentals;
-    private JPanel addHumans, addRentals;
+    private ViewHumans viewHumans;
+    private AddHumans addHumans;
+
+    private JPanel viewRentals;
+    private JPanel addRentals;
     private JPanel mainMenuPanel;
 
     public View() {
@@ -26,9 +30,9 @@ public class View extends JFrame {
 
         viewCars = new ViewCars(e -> showMainMenu());
         addCars = new AddCars(e -> showMainMenu(), e -> saveCar());
-        viewHumans = new JPanel();
+        viewHumans = new ViewHumans(e -> showMainMenu());
         viewRentals = new JPanel();
-        addHumans = new JPanel();
+        addHumans = new AddHumans(e -> showMainMenu(), e -> saveHuman());
         addRentals = new JPanel();
 
         mainPanel.add(viewCars, "ViewCars");
@@ -67,6 +71,11 @@ public class View extends JFrame {
                     refreshViewCars();
                     cardLayout.show(mainPanel, panelName);
                 });
+            } else if(panelName.equals("ViewHumans")) {
+                button.addActionListener(e -> {
+                    refreshViewHumans();
+                    cardLayout.show(mainPanel, panelName);
+                });
             } else {
                 button.addActionListener(e -> cardLayout.show(mainPanel, panelName));
             }
@@ -96,11 +105,25 @@ public class View extends JFrame {
         viewCars.updatePanel(presenter.getCarList());
     }
 
+    public void refreshViewHumans() {
+        viewHumans.updatePanel(presenter.getHumanList());
+    }
+
     public void saveCar() {
         Car c = addCars.getCar();
 
         if (c != null){
             presenter.addCar(c);
+        }
+
+        showMainMenu();
+    }
+
+    public void saveHuman() {
+        Human h = addHumans.getHuman();
+
+        if (h != null){
+            presenter.addHuman(h);
         }
 
         showMainMenu();

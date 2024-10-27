@@ -47,7 +47,7 @@ public class Human {
         this.age = age;
     }
 
-    public void setIDnumber(int idnumber) {
+    public void setIdnumber(int idnumber) {
         this.idnumber = idnumber;
     }
 

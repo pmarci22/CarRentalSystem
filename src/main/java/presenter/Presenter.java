@@ -1,6 +1,7 @@
 package presenter;
 
 import model.Car;
+import model.Human;
 import model.Model;
 import view.View;
 
@@ -27,5 +28,13 @@ public class Presenter implements Serializable {
 
     public void addCar(Car car) {
         model.addCar(car);
+    }
+
+    public List<Human> getHumanList() {
+        return model.getHumans();
+    }
+
+    public void addHuman(Human human) {
+        model.addHuman(human);
     }
 }
