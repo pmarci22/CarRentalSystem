@@ -13,20 +13,25 @@ import java.util.List;
 
 public class ViewCars extends JPanel {
     private DefaultTableModel tableModel;
+    private JTable carTable;
 
-    public ViewCars(ActionListener backListener) {
+    public ViewCars(ActionListener backListener, ActionListener deleteListener) {
         setLayout(new BorderLayout());
 
         String[] columnNames = {"Make", "Model", "Year", "Color", "Price/Day"};
         tableModel = new DefaultTableModel(columnNames, 0);
 
-        JTable carTable = new JTable(tableModel);
+        carTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(carTable);
         add(scrollPane, BorderLayout.CENTER);
 
         JButton backButton = new JButton("Back to Main Menu");
         backButton.addActionListener(backListener);
         add(backButton, BorderLayout.SOUTH);
+
+        JButton deleteButton = new JButton("Delete Selected Car");
+        deleteButton.addActionListener(deleteListener);
+        add(deleteButton, BorderLayout.NORTH);
     }
 
     public void updatePanel(List<Car> cars) {
@@ -41,5 +46,14 @@ public class ViewCars extends JPanel {
             };
             tableModel.addRow(rowData);
         }
+    }
+
+    public int getSelectedRow() {
+        int n = carTable.getSelectedRow();
+
+        if (n == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a car to delete");
+        }
+        return n;
     }
 }

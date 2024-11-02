@@ -30,10 +30,10 @@ public class View extends JFrame {
         cardLayout = new CardLayout();
         mainPanel.setLayout(cardLayout);
 
-        viewCars = new ViewCars(e -> showMainMenu());
+        viewCars = new ViewCars(e -> showMainMenu(), e-> removeCar());
         addCars = new AddCars(e -> showMainMenu(), e -> saveCar());
-        viewHumans = new ViewHumans(e -> showMainMenu());
-        viewRentals = new ViewRentals(e -> showMainMenu());
+        viewHumans = new ViewHumans(e -> showMainMenu(), e-> removeHuman());
+        viewRentals = new ViewRentals(e -> showMainMenu(), e -> removeRental());
         addHumans = new AddHumans(e -> showMainMenu(), e -> saveHuman());
         addRentals = new AddRentals(e -> showMainMenu(), e -> saveRental());
 
@@ -138,6 +138,16 @@ public class View extends JFrame {
         showMainMenu();
     }
 
+    public void removeCar() {
+        int n = viewCars.getSelectedRow();
+
+        if (n != -1){
+            presenter.removeCar(n);
+        }
+
+        showMainMenu();
+    }
+
     public void saveHuman() {
         Human h = addHumans.getHuman();
 
@@ -148,11 +158,31 @@ public class View extends JFrame {
         showMainMenu();
     }
 
+    public void removeHuman() {
+        int n = viewHumans.getSelectedRow();
+
+        if (n != -1){
+            presenter.removeHuman(n);
+        }
+
+        showMainMenu();
+    }
+
     public void saveRental() {
         Rental r = addRentals.getRental();
 
         if (r != null){
             presenter.addRental(r);
+        }
+
+        showMainMenu();
+    }
+
+    public void removeRental() {
+        int n = viewRentals.getSelectedRow();
+
+        if (n != -1){
+            presenter.removeRental(n);
         }
 
         showMainMenu();

@@ -31,6 +31,10 @@ public class Presenter implements Serializable {
         model.addCar(car);
     }
 
+    public void removeCar(int n) {
+        model.removeCar(model.getCars().get(n));
+    }
+
     public List<Human> getHumanList() {
         return model.getHumans();
     }
@@ -39,11 +43,19 @@ public class Presenter implements Serializable {
         model.addHuman(human);
     }
 
+    public void removeHuman(int n) {
+        model.removeHuman(model.getHumans().get(n));
+    }
+
     public List<Rental> getRentalList() {
         return model.getRentals();
     }
 
     public void addRental(Rental rental) {
         model.addRental(rental);
+    }
+
+    public void removeRental(int n) {
+        model.removeRental(model.getRentals().get(n));
     }
 }
