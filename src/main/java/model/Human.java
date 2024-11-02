@@ -37,6 +37,10 @@ public class Human {
         return phoneNumber;
     }
 
+    public String toString() {
+        return "Name: " + name + " Age: " + age + " ID Number: " + idnumber;
+    }
+
     // Setters
 
     public void setName(String name) {

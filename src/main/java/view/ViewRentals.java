@@ -15,7 +15,7 @@ public class ViewRentals extends JPanel {
     public ViewRentals(ActionListener backListener) {
         setLayout(new BorderLayout());
 
-        String[] columnNames = {"Human", "Car", "Days", "Price"};
+        String[] columnNames = {"Human", "Car", "Days", "Price", "Status"};
         tableModel = new DefaultTableModel(columnNames, 0);
         rentalsTable = new JTable(tableModel);
 
@@ -35,7 +35,8 @@ public class ViewRentals extends JPanel {
                     rental.getHuman().getName(),
                     rental.getCar().getModel(),
                     rental.getDays(),
-                    rental.getPrice()
+                    rental.getPrice(),
+                    rental.getCheckInDate()
             };
             tableModel.addRow(rowData);
         }

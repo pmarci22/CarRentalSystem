@@ -37,6 +37,10 @@ public class Car {
         return price;
     }
 
+    public String toString() {
+        return "Make: " + make + " Model: " + model + " Year: " + year;
+    }
+
     // Setters
 
     public void setMake(String make) {

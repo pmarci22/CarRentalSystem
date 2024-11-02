@@ -42,4 +42,8 @@ public class Presenter implements Serializable {
     public List<Rental> getRentalList() {
         return model.getRentals();
     }
+
+    public void addRental(Rental rental) {
+        model.addRental(rental);
+    }
 }

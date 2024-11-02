@@ -2,6 +2,7 @@ package view;
 
 import model.Car;
 import model.Human;
+import model.Rental;
 import presenter.Presenter;
 
 import javax.swing.*;
@@ -20,8 +21,7 @@ public class View extends JFrame {
     private AddHumans addHumans;
 
     private ViewRentals viewRentals;
-
-    private JPanel addRentals;
+    private AddRentals addRentals;
 
     private JPanel mainMenuPanel;
 
@@ -35,7 +35,7 @@ public class View extends JFrame {
         viewHumans = new ViewHumans(e -> showMainMenu());
         viewRentals = new ViewRentals(e -> showMainMenu());
         addHumans = new AddHumans(e -> showMainMenu(), e -> saveHuman());
-        addRentals = new JPanel();
+        addRentals = new AddRentals(e -> showMainMenu(), e -> saveRental());
 
         mainPanel.add(viewCars, "ViewCars");
         mainPanel.add(viewHumans, "ViewHumans");
@@ -45,7 +45,7 @@ public class View extends JFrame {
         mainPanel.add(addRentals, "AddRentals");
 
         mainMenuPanel = new JPanel();
-        mainMenuPanel.setLayout(new BoxLayout(mainMenuPanel, BoxLayout.Y_AXIS));
+        mainMenuPanel.setLayout(new GridLayout(4, 2));
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int fontSize = (int) (screenSize.height * 0.03);
@@ -55,12 +55,12 @@ public class View extends JFrame {
         mainMenuPanel.add(titleLabel);
         mainMenuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        String[] buttonLabels = {"View Cars", "View Clients", "View Rentals", "Add Cars", "Add Clients", "Add Rentals"};
-        String[] panelNames = {"ViewCars", "ViewHumans", "ViewRentals", "AddCars", "AddHumans", "AddRentals"};
+        String[] buttonLabels = {"View Cars", "Add Car", "View Rentals", "Add Rental", "View Clients", "Add Client"};
+        String[] panelNames = {"ViewCars", "AddCars", "ViewRentals", "AddRentals", "ViewHumans", "AddHumans"};
 
 
         int buttonWidth = (int) (screenSize.width * 0.2);
-        int buttonHeight = (int) (screenSize.height * 0.05);
+        int buttonHeight = (int) (screenSize.height * 0.07);
         Dimension buttonSize = new Dimension(buttonWidth, buttonHeight);
 
         for (int i = 0; i < buttonLabels.length; i++) {
@@ -80,14 +80,18 @@ public class View extends JFrame {
                 });
             } else if(panelName.equals("ViewRentals")) {
                 button.addActionListener(e -> {
-                    refreshViewHumans();
+                    refreshViewRentals();
+                    cardLayout.show(mainPanel, panelName);
+                });
+            } else if(panelName.equals("AddRentals")) {
+                button.addActionListener(e -> {
+                    refreshAddRentals();
                     cardLayout.show(mainPanel, panelName);
                 });
             } else {
                 button.addActionListener(e -> cardLayout.show(mainPanel, panelName));
             }
             mainMenuPanel.add(button);
-            mainMenuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
 
         mainPanel.add(mainMenuPanel, "MainMenu");
@@ -120,6 +124,10 @@ public class View extends JFrame {
         viewRentals.updatePanel(presenter.getRentalList());
     }
 
+    public void refreshAddRentals() {
+        addRentals.updatePanel(presenter.getCarList(), presenter.getHumanList());
+    }
+
     public void saveCar() {
         Car c = addCars.getCar();
 
@@ -135,6 +143,16 @@ public class View extends JFrame {
 
         if (h != null){
             presenter.addHuman(h);
+        }
+
+        showMainMenu();
+    }
+
+    public void saveRental() {
+        Rental r = addRentals.getRental();
+
+        if (r != null){
+            presenter.addRental(r);
         }
 
         showMainMenu();

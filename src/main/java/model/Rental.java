@@ -1,10 +1,13 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Rental {
     private Human human;
     private Car car;
     private int days;
     private int price;
+    private LocalDate checkInDate;
 
     public Rental(Human human, Car car, int days, int price) {
         this.human = human;
@@ -31,6 +34,10 @@ public class Rental {
         return price;
     }
 
+    public String getCheckInDate() {
+        return checkInDate != null ? checkInDate.toString() : "Not yet checked in";
+    }
+
     // Setters
 
     public void setHuman(Human human) {
@@ -47,5 +54,9 @@ public class Rental {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkInDate;
     }
 }
