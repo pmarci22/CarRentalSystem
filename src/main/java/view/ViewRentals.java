@@ -12,7 +12,7 @@ public class ViewRentals extends JPanel {
     private JTable rentalsTable;
     private DefaultTableModel tableModel;
 
-    public ViewRentals(ActionListener backListener, ActionListener deleteListener) {
+    public ViewRentals(ActionListener backListener, ActionListener deleteListener, ActionListener checkinListener) {
         setLayout(new BorderLayout());
 
         String[] columnNames = {"Human", "Car", "Days", "Price", "Status"};
@@ -29,6 +29,10 @@ public class ViewRentals extends JPanel {
         JButton deleteButton = new JButton("Delete Selected Rental");
         deleteButton.addActionListener(deleteListener);
         add(deleteButton, BorderLayout.NORTH);
+
+        JButton checkinbutton = new JButton("Check in Selected Rental");
+        checkinbutton.addActionListener(checkinListener);
+        add(checkinbutton, BorderLayout.WEST);
     }
 
     public void updatePanel(List<Rental> rentals) {
@@ -50,7 +54,7 @@ public class ViewRentals extends JPanel {
         int n = rentalsTable.getSelectedRow();
 
         if (n == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a Rental to delete");
+            JOptionPane.showMessageDialog(this, "Please select a rental");
         }
         return n;
     }

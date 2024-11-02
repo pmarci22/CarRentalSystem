@@ -35,7 +35,7 @@ public class Rental {
     }
 
     public String getCheckInDate() {
-        return checkInDate != null ? checkInDate.toString() : "Not yet checked in";
+        return checkInDate != null ? "Checked in : "+checkInDate.toString() : "Rented";
     }
 
     // Setters

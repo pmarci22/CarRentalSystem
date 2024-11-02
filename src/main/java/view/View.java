@@ -7,6 +7,7 @@ import presenter.Presenter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class View extends JFrame {
     private Presenter presenter;
@@ -33,7 +34,7 @@ public class View extends JFrame {
         viewCars = new ViewCars(e -> showMainMenu(), e-> removeCar());
         addCars = new AddCars(e -> showMainMenu(), e -> saveCar());
         viewHumans = new ViewHumans(e -> showMainMenu(), e-> removeHuman());
-        viewRentals = new ViewRentals(e -> showMainMenu(), e -> removeRental());
+        viewRentals = new ViewRentals(e -> showMainMenu(), e -> removeRental(), e -> checkInRental());
         addHumans = new AddHumans(e -> showMainMenu(), e -> saveHuman());
         addRentals = new AddRentals(e -> showMainMenu(), e -> saveRental());
 
@@ -185,6 +186,31 @@ public class View extends JFrame {
             presenter.removeRental(n);
         }
 
+        showMainMenu();
+    }
+
+    public void checkInRental() {
+        int n = viewRentals.getSelectedRow();
+        int response;
+
+        if(n != -1) {
+            response = JOptionPane.showConfirmDialog(
+                    this,
+                    "Is everything ok with the car?",
+                    "Car Check",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (response == JOptionPane.YES_OPTION) {
+                Rental r = presenter.getRentalList().get(n);
+                r.setCheckInDate(LocalDate.now());
+            }
+
+            if (response == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "Call Client to solve the issue!");
+            }
+        }
         showMainMenu();
     }
 }
