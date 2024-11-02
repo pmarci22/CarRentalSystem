@@ -3,6 +3,7 @@ package presenter;
 import model.Car;
 import model.Human;
 import model.Model;
+import model.Rental;
 import view.View;
 
 import java.io.Serializable;
@@ -36,5 +37,9 @@ public class Presenter implements Serializable {
 
     public void addHuman(Human human) {
         model.addHuman(human);
+    }
+
+    public List<Rental> getRentalList() {
+        return model.getRentals();
     }
 }

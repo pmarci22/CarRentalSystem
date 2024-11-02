@@ -19,8 +19,10 @@ public class View extends JFrame {
     private ViewHumans viewHumans;
     private AddHumans addHumans;
 
-    private JPanel viewRentals;
+    private ViewRentals viewRentals;
+
     private JPanel addRentals;
+
     private JPanel mainMenuPanel;
 
     public View() {
@@ -31,7 +33,7 @@ public class View extends JFrame {
         viewCars = new ViewCars(e -> showMainMenu());
         addCars = new AddCars(e -> showMainMenu(), e -> saveCar());
         viewHumans = new ViewHumans(e -> showMainMenu());
-        viewRentals = new JPanel();
+        viewRentals = new ViewRentals(e -> showMainMenu());
         addHumans = new AddHumans(e -> showMainMenu(), e -> saveHuman());
         addRentals = new JPanel();
 
@@ -76,6 +78,11 @@ public class View extends JFrame {
                     refreshViewHumans();
                     cardLayout.show(mainPanel, panelName);
                 });
+            } else if(panelName.equals("ViewRentals")) {
+                button.addActionListener(e -> {
+                    refreshViewHumans();
+                    cardLayout.show(mainPanel, panelName);
+                });
             } else {
                 button.addActionListener(e -> cardLayout.show(mainPanel, panelName));
             }
@@ -107,6 +114,10 @@ public class View extends JFrame {
 
     public void refreshViewHumans() {
         viewHumans.updatePanel(presenter.getHumanList());
+    }
+
+    public void refreshViewRentals() {
+        viewRentals.updatePanel(presenter.getRentalList());
     }
 
     public void saveCar() {
