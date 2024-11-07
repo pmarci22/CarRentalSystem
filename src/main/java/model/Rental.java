@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Rental {
+public class Rental implements Serializable {
     private Human human;
     private Car car;
     private int days;

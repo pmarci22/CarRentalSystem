@@ -4,6 +4,7 @@ import model.Car;
 import model.Human;
 import model.Model;
 import model.Rental;
+import serialization.SerializationUtility;
 import view.View;
 
 import java.io.Serializable;
@@ -57,5 +58,13 @@ public class Presenter implements Serializable {
 
     public void removeRental(int n) {
         model.removeRental(model.getRentals().get(n));
+    }
+
+    public void saveModel(String fileName) {
+        try {
+            SerializationUtility.serializeModel(model, fileName);
+        } catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

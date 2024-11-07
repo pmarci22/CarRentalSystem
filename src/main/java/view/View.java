@@ -46,7 +46,7 @@ public class View extends JFrame {
         mainPanel.add(addRentals, "AddRentals");
 
         mainMenuPanel = new JPanel();
-        mainMenuPanel.setLayout(new GridLayout(4, 2));
+        mainMenuPanel.setLayout(new GridLayout(5, 2));
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int fontSize = (int) (screenSize.height * 0.03);
@@ -94,6 +94,17 @@ public class View extends JFrame {
             }
             mainMenuPanel.add(button);
         }
+
+        JButton exitButton = new JButton("Save and Exit");
+        exitButton.setPreferredSize(buttonSize);
+        exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        exitButton.addActionListener(e -> {
+                presenter.saveModel("Database.txt");
+                System.exit(0);
+        });
+
+        mainMenuPanel.add(exitButton);
 
         mainPanel.add(mainMenuPanel, "MainMenu");
 
