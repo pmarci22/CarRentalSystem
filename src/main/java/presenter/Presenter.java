@@ -10,7 +10,7 @@ import view.View;
 import java.io.Serializable;
 import java.util.List;
 
-public class Presenter implements Serializable {
+public class Presenter {
     private Model model;
     private View view;
 
