@@ -16,9 +16,15 @@ public class ViewHumans extends JPanel {
         setLayout(new BorderLayout());
 
         String[] columnNames = {"Name", "Age", "ID number", "Address", "Phone number"};
-        tableModel = new DefaultTableModel(columnNames, 0);
+        tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         humanTable = new JTable(tableModel);
+        humanTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(humanTable);
         add(scrollPane, BorderLayout.CENTER);
 

@@ -16,8 +16,15 @@ public class ViewRentals extends JPanel {
         setLayout(new BorderLayout());
 
         String[] columnNames = {"Human", "Car", "Days", "Price", "Status"};
-        tableModel = new DefaultTableModel(columnNames, 0);
+        tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         rentalsTable = new JTable(tableModel);
+        rentalsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         JScrollPane scrollPane = new JScrollPane(rentalsTable);
         add(scrollPane, BorderLayout.CENTER);

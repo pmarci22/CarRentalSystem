@@ -19,9 +19,15 @@ public class ViewCars extends JPanel {
         setLayout(new BorderLayout());
 
         String[] columnNames = {"Make", "Model", "Year", "Color", "Price/Day"};
-        tableModel = new DefaultTableModel(columnNames, 0);
+        tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         carTable = new JTable(tableModel);
+        carTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(carTable);
         add(scrollPane, BorderLayout.CENTER);
 
