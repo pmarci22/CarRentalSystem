@@ -52,8 +52,9 @@ public class AddCars extends JPanel {
         String color = colorField.getText();
         int price;
 
-        if(make.isEmpty() || model.isEmpty() || color.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Make, model, and color are required fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (make.isEmpty() || model.isEmpty() || color.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Make, model, and color are required fields.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
@@ -61,7 +62,8 @@ public class AddCars extends JPanel {
             year = Integer.parseInt(yearField.getText());
             price = Integer.parseInt(priceField.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Year and Price must be valid numbers!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Year and Price must be valid numbers!", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             yearField.setText("");
             priceField.setText("");
             return null;

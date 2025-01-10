@@ -3,7 +3,6 @@ package view;
 import model.Car;
 import model.Human;
 import model.Rental;
-import presenter.Presenter;
 
 import javax.swing.*;
 import java.awt.*;

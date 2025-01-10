@@ -15,7 +15,7 @@ public class ViewHumans extends JPanel {
     public ViewHumans(ActionListener backListener, ActionListener deleteListener) {
         setLayout(new BorderLayout());
 
-        String[] columnNames = {"Name", "Age", "ID number", "Address", "Phone number"};
+        String[] columnNames = { "Name", "Age", "ID number", "Address", "Phone number" };
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {

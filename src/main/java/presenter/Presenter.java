@@ -7,7 +7,6 @@ import model.Rental;
 import serialization.SerializationUtility;
 import view.View;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class Presenter {
@@ -63,7 +62,7 @@ public class Presenter {
     public void saveModel(String fileName) {
         try {
             SerializationUtility.serializeModel(model, fileName);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }

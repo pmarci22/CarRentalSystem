@@ -31,9 +31,9 @@ public class View extends JFrame {
         cardLayout = new CardLayout();
         mainPanel.setLayout(cardLayout);
 
-        viewCars = new ViewCars(e -> showMainMenu(), e-> removeCar());
+        viewCars = new ViewCars(e -> showMainMenu(), e -> removeCar());
         addCars = new AddCars(e -> showMainMenu(), e -> saveCar());
-        viewHumans = new ViewHumans(e -> showMainMenu(), e-> removeHuman());
+        viewHumans = new ViewHumans(e -> showMainMenu(), e -> removeHuman());
         viewRentals = new ViewRentals(e -> showMainMenu(), e -> removeRental(), e -> checkInRental());
         addHumans = new AddHumans(e -> showMainMenu(), e -> saveHuman());
         addRentals = new AddRentals(e -> showMainMenu(), e -> saveRental());
@@ -56,9 +56,8 @@ public class View extends JFrame {
         mainMenuPanel.add(titleLabel);
         mainMenuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        String[] buttonLabels = {"View Cars", "Add Car", "View Rentals", "Add Rental", "View Clients", "Add Client"};
-        String[] panelNames = {"ViewCars", "AddCars", "ViewRentals", "AddRentals", "ViewHumans", "AddHumans"};
-
+        String[] buttonLabels = { "View Cars", "Add Car", "View Rentals", "Add Rental", "View Clients", "Add Client" };
+        String[] panelNames = { "ViewCars", "AddCars", "ViewRentals", "AddRentals", "ViewHumans", "AddHumans" };
 
         int buttonWidth = (int) (screenSize.width * 0.2);
         int buttonHeight = (int) (screenSize.height * 0.07);
@@ -74,17 +73,17 @@ public class View extends JFrame {
                     refreshViewCars();
                     cardLayout.show(mainPanel, panelName);
                 });
-            } else if(panelName.equals("ViewHumans")) {
+            } else if (panelName.equals("ViewHumans")) {
                 button.addActionListener(e -> {
                     refreshViewHumans();
                     cardLayout.show(mainPanel, panelName);
                 });
-            } else if(panelName.equals("ViewRentals")) {
+            } else if (panelName.equals("ViewRentals")) {
                 button.addActionListener(e -> {
                     refreshViewRentals();
                     cardLayout.show(mainPanel, panelName);
                 });
-            } else if(panelName.equals("AddRentals")) {
+            } else if (panelName.equals("AddRentals")) {
                 button.addActionListener(e -> {
                     refreshAddRentals();
                     cardLayout.show(mainPanel, panelName);
@@ -100,8 +99,8 @@ public class View extends JFrame {
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         exitButton.addActionListener(e -> {
-                presenter.saveModel("Database.txt");
-                System.exit(0);
+            presenter.saveModel("Database.txt");
+            System.exit(0);
         });
 
         mainMenuPanel.add(exitButton);
@@ -143,7 +142,7 @@ public class View extends JFrame {
     public void saveCar() {
         Car c = addCars.getCar();
 
-        if (c != null){
+        if (c != null) {
             presenter.addCar(c);
         }
 
@@ -153,7 +152,7 @@ public class View extends JFrame {
     public void removeCar() {
         int n = viewCars.getSelectedRow();
 
-        if (n != -1){
+        if (n != -1) {
             presenter.removeCar(n);
         }
 
@@ -163,7 +162,7 @@ public class View extends JFrame {
     public void saveHuman() {
         Human h = addHumans.getHuman();
 
-        if (h != null){
+        if (h != null) {
             presenter.addHuman(h);
         }
 
@@ -173,7 +172,7 @@ public class View extends JFrame {
     public void removeHuman() {
         int n = viewHumans.getSelectedRow();
 
-        if (n != -1){
+        if (n != -1) {
             presenter.removeHuman(n);
         }
 
@@ -183,7 +182,7 @@ public class View extends JFrame {
     public void saveRental() {
         Rental r = addRentals.getRental();
 
-        if (r != null){
+        if (r != null) {
             presenter.addRental(r);
         }
 
@@ -193,7 +192,7 @@ public class View extends JFrame {
     public void removeRental() {
         int n = viewRentals.getSelectedRow();
 
-        if (n != -1){
+        if (n != -1) {
             presenter.removeRental(n);
         }
 
@@ -204,14 +203,13 @@ public class View extends JFrame {
         int n = viewRentals.getSelectedRow();
         int response;
 
-        if(n != -1) {
+        if (n != -1) {
             response = JOptionPane.showConfirmDialog(
                     this,
                     "Is everything ok with the car?",
                     "Car Check",
                     JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
+                    JOptionPane.QUESTION_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
                 Rental r = presenter.getRentalList().get(n);

@@ -17,29 +17,29 @@ public class Model implements Serializable {
 
     // Adders
 
-    public void addHuman(Human human){
+    public void addHuman(Human human) {
         humans.add(human);
     }
 
-    public void addCar(Car car){
+    public void addCar(Car car) {
         cars.add(car);
     }
 
-    public void addRental(Rental rental){
+    public void addRental(Rental rental) {
         rentals.add(rental);
     }
 
     // Removers
 
-    public void removeHuman(Human human){
+    public void removeHuman(Human human) {
         humans.remove(human);
     }
 
-    public void removeCar(Car car){
+    public void removeCar(Car car) {
         cars.remove(car);
     }
 
-    public void removeRental(Rental rental){
+    public void removeRental(Rental rental) {
         rentals.remove(rental);
     }
 

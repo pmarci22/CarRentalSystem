@@ -15,7 +15,7 @@ public class ViewRentals extends JPanel {
     public ViewRentals(ActionListener backListener, ActionListener deleteListener, ActionListener checkinListener) {
         setLayout(new BorderLayout());
 
-        String[] columnNames = {"Human", "Car", "Days", "Price", "Status"};
+        String[] columnNames = { "Human", "Car", "Days", "Price", "Status" };
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {

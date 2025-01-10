@@ -36,7 +36,7 @@ public class Rental implements Serializable {
     }
 
     public String getCheckInDate() {
-        return checkInDate != null ? "Checked in : "+checkInDate.toString() : "Rented";
+        return checkInDate != null ? "Checked in : " + checkInDate.toString() : "Rented";
     }
 
     // Setters

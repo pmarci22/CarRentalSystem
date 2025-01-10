@@ -1,7 +1,5 @@
 package view;
 
-
-
 import model.Car;
 
 import javax.swing.*;
@@ -10,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-
 public class ViewCars extends JPanel {
     private DefaultTableModel tableModel;
     private JTable carTable;
@@ -18,7 +15,7 @@ public class ViewCars extends JPanel {
     public ViewCars(ActionListener backListener, ActionListener deleteListener) {
         setLayout(new BorderLayout());
 
-        String[] columnNames = {"Make", "Model", "Year", "Color", "Price/Day"};
+        String[] columnNames = { "Make", "Model", "Year", "Color", "Price/Day" };
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {

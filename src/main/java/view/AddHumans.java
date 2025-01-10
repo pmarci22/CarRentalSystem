@@ -1,6 +1,5 @@
 package view;
 
-import model.Car;
 import model.Human;
 
 import javax.swing.*;
@@ -53,8 +52,9 @@ public class AddHumans extends JPanel {
         String address = addressField.getText();
         String phoneNumber = phoneNumberField.getText();
 
-        if(name.isEmpty() || address.isEmpty() || phoneNumber.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Name, address and phone number are requied fields!", "Error", JOptionPane.ERROR_MESSAGE);
+        if (name.isEmpty() || address.isEmpty() || phoneNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name, address and phone number are requied fields!", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
@@ -62,7 +62,8 @@ public class AddHumans extends JPanel {
             age = Integer.parseInt(ageField.getText());
             id = Integer.parseInt(idField.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Age and ID number must be valid numbers!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Age and ID number must be valid numbers!", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             ageField.setText("");
             idField.setText("");
             return null;

@@ -8,9 +8,9 @@ import view.View;
 public class Main {
     public static void main(String[] args) {
         Model model;
-        try{
+        try {
             model = SerializationUtility.deserializeModel("Database.txt");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("No data found. Starting with empty model.");
             System.out.println("Error: " + e.getMessage());
             model = new Model();
